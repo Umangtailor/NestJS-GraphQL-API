@@ -1,0 +1,50 @@
+# task.gql
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+type Task {
+  id: ID!
+  title: String!
+  description: String
+  status: TaskStatus!
+  projectName: String!
+  createdAt: String!
+}
+
+input CreateTaskInput {
+  title: String!
+  description: String
+  projectId: String!
+  assignedTo: String
+}
+
+input UpdateTaskInput {
+  taskId: String!
+  description: String
+  status: TaskStatus
+}
+
+type TaskMutationResponse {
+  message: String!
+  data: Task
+}
+
+type TaskListResponse {
+  tasks: [Task!]!
+  totalCount: Int!
+  hasNextPage: Boolean!
+}
+
+type Query {
+  myTasks(page: Int, limit: Int, search: String): TaskListResponse!
+}
+
+type Mutation {
+  createTask(data: CreateTaskInput!): TaskMutationResponse!
+  updateTask(data: UpdateTaskInput!): TaskMutationResponse!
+  deleteTask(taskId: String!): TaskMutationResponse!
+}

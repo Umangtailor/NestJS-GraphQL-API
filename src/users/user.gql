@@ -1,0 +1,33 @@
+# user.gql
+
+type AuthResponse {
+  message: String!
+  token: String
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type UserGraphQL {
+  email: String!
+  id: ID!
+  username: String!
+}
+
+type Query {
+  # Placeholder query to keep schema valid
+  _userPlaceholder: String
+}
+
+type Mutation {
+  loginUser(data: LoginUserInput!): AuthResponse!
+  signUp(data: CreateUserInput!): UserGraphQL!
+}

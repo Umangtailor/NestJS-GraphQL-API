@@ -1,0 +1,32 @@
+# project.gql
+
+type Project {
+  id: ID!
+  name: String!
+  description: String
+  owner: UserGraphQL!
+}
+
+input CreateProjectInput {
+  name: String!
+  description: String
+}
+
+input AddProjectMemberInput {
+  projectId: String!
+  userEmail: String!
+}
+
+type ProjectMutationResponse {
+  message: String!
+  data: Project
+}
+
+type Query {
+  myProjects: [Project!]!
+}
+
+type Mutation {
+  createProject(data: CreateProjectInput!): ProjectMutationResponse!
+  addProjectMember(data: AddProjectMemberInput!): ProjectMutationResponse!
+}
