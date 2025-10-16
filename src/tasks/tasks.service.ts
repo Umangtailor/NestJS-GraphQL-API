@@ -62,7 +62,7 @@ export class TasksService {
         id: task.id,
         title: task.title,
         description: task.description,
-        status: task.status.toUpperCase(),
+        status: task.status.toUpperCase().replace(/-/g, '_'),
         projectName: project?.name || 'Unknown Project',
         createdAt: task.createdAt,
       },
@@ -89,7 +89,7 @@ export class TasksService {
       updateData.description = updateTaskData.description;
     }
     if (updateTaskData.status !== undefined) {
-      updateData.status = updateTaskData.status.toLowerCase().replace('_', '-');
+      updateData.status = updateTaskData.status.toLowerCase().replace(/_/g, '-');
     }
 
     await task.update(updateData);
@@ -108,7 +108,7 @@ export class TasksService {
         id: task.id,
         title: task.title,
         description: task.description,
-        status: task.status.toUpperCase(),
+        status: task.status.toUpperCase().replace(/-/g, '_'),
         projectName: project?.name || 'Unknown Project',
         createdAt: task.createdAt,
       },
@@ -149,7 +149,7 @@ export class TasksService {
         id: task.id,
         title: task.title,
         description: task.description,
-        status: task.status.toUpperCase(),
+        status: task.status.toUpperCase().replace(/-/g, '_'),
         projectName: project?.name || 'Unknown Project',
         createdAt: task.createdAt,
       },
@@ -198,7 +198,7 @@ export class TasksService {
         id: row.task_id,
         title: row.title,
         description: row.description,
-        status: row.status.toUpperCase().replace('-', '_'),
+        status: row.status.toUpperCase().replace(/-/g, '_'),
         projectName: row.project_name,
         createdAt: row.created_date,
       })),
